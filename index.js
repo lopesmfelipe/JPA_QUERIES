@@ -62,8 +62,8 @@ const tempProduct = fs.readFileSync(
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
-
 const server = http.createServer((req, res) => {
+
   const { query, pathname } = url.parse(req.url, true);
 
   // OVERVIEW PAGE
@@ -78,9 +78,7 @@ const server = http.createServer((req, res) => {
 
     // PRODUCT PAGE
   } else if (pathname === '/product') {
-    res.writeHead(200, {
-      'Content-type': 'text/html'
-    });
+    res.writeHead(200, { 'Content-type': 'text/html'});
     const product = dataObj[query.id];
     const output = replaceTemplate(tempProduct, product);
     res.end(output);
